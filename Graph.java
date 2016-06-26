@@ -6,23 +6,23 @@ import java.io.InputStream;
 public class Graph implements Graph_Interface {
     final int inf = 1000000000;
     final Random random = new Random();
-    int n;//количество узлов
+    /*int n;//количество узлов
     int m=0;//количество ветвей
     int v;// узел из которого нужно считать пути;
     Vector<Element_graph_way> list=new Vector<Element_graph_way>(); //= new Element_graph_way[];//база для информации о графе
     Vector <Integer> ways=new Vector<Integer>();
-    Vector <Integer> road=new Vector<Integer>();
+    Vector <Integer> road=new Vector<Integer>();*/
 
     public void input_file() {
 
     }
 
-    public void input_generation() {
-        int fi = 0;
-        n = 20;
+    public void input_generation(int n, int k, Vector<Element_graph_way> list) {
+        int fi = 0; //что это?
+       // n = 20;
         for (int i = 0; i < n; i++) {
-            int k = 2;// количество путей из i
-            m = m + k;
+            //int k = 2;// количество путей из i
+           // m = m + k;
             for (int j = 0; j < k; j++) {
                 Element_graph_way Q=new  Element_graph_way();
                 Q.from = i;
@@ -40,7 +40,7 @@ public class Graph implements Graph_Interface {
         }
     }
 
-    public void search_algorithm() {
+    public void search_algorithm(Vector<Integer> ways, Vector<Integer> road, int n, int v, int m, Vector<Element_graph_way> list) {
 
         //road = new int[n];
         for (int i = 0; i < n; ++i) {
@@ -63,7 +63,7 @@ public class Graph implements Graph_Interface {
         }
     }
 
-    public void output_ways() {
+    public void output_ways(int n, int v, Vector<Integer> ways, Vector<Integer> road) {
         Vector <Integer> path=new Vector <Integer>();
         for (int j = 0; j < n; j++)
             if (j != v)
