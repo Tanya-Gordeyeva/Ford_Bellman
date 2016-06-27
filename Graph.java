@@ -7,12 +7,12 @@ public class Graph implements Graph_Interface {
     final int inf = 1000000000;
     final Random random = new Random();
     static int c=0;
-    /*int n;//количество узлов
+    Vector<Element_graph_way> list = new Vector<Element_graph_way>();
+    Vector<Integer> ways = new Vector<Integer>();
+    Vector<Integer> road = new Vector<Integer>();
+    int n;//количество узлов
     int m=0;//количество ветвей
     int v;// узел из которого нужно считать пути;
-    Vector<Element_graph_way> list=new Vector<Element_graph_way>(); //= new Element_graph_way[];//база для информации о графе
-    Vector <Integer> ways=new Vector<Integer>();
-    Vector <Integer> road=new Vector<Integer>();*/
 
     public int input_file() {
         Scanner sc;
@@ -25,7 +25,7 @@ public class Graph implements Graph_Interface {
                 if (sc.hasNextInt()) {
                     c = sc.nextInt();
                 } else System.out.println("В файле недостаточно данных");
-                for (int j = 0; j < c; j++) {
+                for (int j = 0; j < m; j++) {
                     Element_graph_way Q = new Element_graph_way();
                     if (sc.hasNextInt()) {
                         Q.from = sc.nextInt();
@@ -51,12 +51,8 @@ public class Graph implements Graph_Interface {
         return v;
     }
 
-    public void input_generation(int n, int k, Vector<Element_graph_way> list) {
-       // n = 20;
+    public void input_generation() {
         for (int i = 0; i < n; i++) {
-            //int k = 2;// количество путей из i
-           // m = m + k;
-           c=c+k;
             for (int j = 0; j < k; j++) {
                 Element_graph_way Q=new  Element_graph_way();
                 Q.from = i;
@@ -71,6 +67,7 @@ public class Graph implements Graph_Interface {
                 list.add(Q);
             }
         }
+     m=n*m;
     }
 
     public void search_algorithm(Vector<Integer> ways, Vector<Integer> road, int n, int v, int m, Vector<Element_graph_way> list) {
@@ -97,6 +94,29 @@ public class Graph implements Graph_Interface {
         }
     }
 
+    public void output_ways( Controller P) {
+        Vector<Integer> path = new Vector<Integer>();
+        for (int j = 0; j < n; j++)
+            if (j != (v )) {
+                if (ways.elementAt(j) == 1000000000) {
+                    P.result.appendText("Путь из вершины " + (v+1) + " в вершину " + (j + 1) + ": NO");
+                } else {
+                    for (int cur = j; cur != -1; cur = road.elementAt(cur))
+                        path.add(cur);
+                    P.result.appendText("Путь из вершины " + (v+1) + " в вершину " + (j + 1) + ": " + ways.elementAt(j) + "\nКратчайший путь: ");
+                    for (int i = path.size() - 1; i >= 1; i--) {
+                        int l = (path.elementAt(i) + 1);
+                        P.result.appendText(l + "->");
+                    }
+                    P.result.appendText((path.elementAt(0) + 1) + "\n");
+                    path.clear();
+                }
+            }
+        road.clear();
+        ways.clear();
+    }
+    
+    
     public void output_graph() {
 
     }
