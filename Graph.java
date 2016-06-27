@@ -14,7 +14,7 @@ public class Graph implements Graph_Interface {
     int m=0;//количество ветвей
     int v;// узел из которого нужно считать пути;
 
-    public int input_file() {
+    public void input_file() {
         Scanner sc;
         try {
             sc = new Scanner(new File("D://in.txt"));
@@ -48,7 +48,6 @@ public class Graph implements Graph_Interface {
         } catch (FileNotFoundException ex) {
             System.out.println("Файл не существует!");
         }
-        return v;
     }
 
     public void input_generation() {
