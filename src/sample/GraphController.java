@@ -47,7 +47,7 @@ public class GraphController extends Controller {
         }
         if (P.V != -1)
             if (P.ways.elementAt(P.V) == 1000000000) {
-                Label label = new Label("Путь из вершины " + Integer.toString(P.v) + " в вершину " + Integer.toString(P.V + 1) + ": NO\n");
+                Label label = new Label("Путь из вершины " + Integer.toString(P.v+1) + " в вершину " + Integer.toString(P.V + 1) + ": NO\n");
                 label.setTextFill(Color.RED);
                 label.setLayoutX(0);
                 label.setLayoutY(0);
